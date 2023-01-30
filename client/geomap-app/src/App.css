@@ -1,0 +1,110 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.popCard{
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+.place{
+  font-size: 14px;
+}
+
+label{
+  color: blue;
+  font-size: 13px;
+  border-bottom: 1.5px solid blue;
+  margin: 3px 0;
+}
+
+.desc{
+  font-size: 13px;
+}
+
+.star{
+  color: gold;
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: gray;
+}
+
+form{
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+input, textarea{
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder{
+  font-size: 12px;
+  color: grey;
+}
+
+.submitButton{
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  background-color: tomato;
+}
+
+.submitButton:hover{
+  cursor: pointer;
+  background-color: rgb(185, 35, 8);
+}
+
+.footer{
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  height: auto;
+  width: 100vw;
+  background-color: rgb(17, 16, 16);
+  z-index: 100;
+  bottom: 0;
+  justify-content: center;
+}
+
+.footer:hover{
+  box-shadow: white -6px -2px 16px 0px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.button{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(87, 87, 185);
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.button:hover{
+  background-color: rgb(0, 0, 255);
+}
+
+

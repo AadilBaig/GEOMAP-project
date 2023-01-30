@@ -2,7 +2,7 @@ const router = require("express").Router()
 const Pin = require("../models/Pin")
 
 //Create a pin and store to db
-router.post("/", async(req, res) => {   //API/PINS/
+router.post("/", async(req, res) => {   
     const pinCandidate = new Pin(req.body)
 
     try{
