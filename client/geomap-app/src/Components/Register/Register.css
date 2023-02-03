@@ -1,0 +1,52 @@
+.registerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 280px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.application{
+    color: blue;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.register_button{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: lightgray;
+    font-weight: 900;
+}
+
+.register_button:hover{
+    background-color: rgb(225, 225, 225);
+}
+
+input{
+padding: 2px;
+outline: none;
+background-color: whitesmoke;
+color: rgb(50, 50, 185);
+}
+
+.register_close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}

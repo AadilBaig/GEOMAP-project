@@ -44,3 +44,10 @@ input{
     background-color: whitesmoke;
     color: rgb(70, 51, 197);;
 }
+
+.login_cancel{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}

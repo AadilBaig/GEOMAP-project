@@ -7,6 +7,8 @@ import {format} from 'timeago.js'
 
 import PlaceIcon from '@mui/icons-material/Place';
 import StarIcon from '@mui/icons-material/Star';
+import CloseIcon from '@mui/icons-material/Close';
+
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 
@@ -45,8 +47,38 @@ function App() {
     setCurrentPlaceId(id)
   }
 
-  const handlePinSubmit = () => {
+  const handleLogout = () => {
+    setCurrentUser(null)
+  }
 
+  const handlePinSubmit = async(e) => {
+    e.preventDefault()
+
+    const newPin = {
+      userName : currentUser,
+      title : title,
+      rating : rating,
+      desc : desc,
+      lat : newPlace.lat,
+      long : newPlace.lng
+    }
+
+    try{
+      if(!currentUser){
+        //ERROR
+      }else{
+        const response = await axios.post("/pins", newPin)
+        setPins([...pins, response.data])
+        setNewPlace(null)
+        //notify success
+
+        setRating(1)
+        setDesc(null)
+        setTitle(null)
+      }
+    }catch (err){
+      console.log(err)
+    }
   }
 
   React.useEffect(() =>{
@@ -88,7 +120,7 @@ function App() {
                 <PlaceIcon
                 className='icon'
                 onClick = {() => handleMarkerClicked(p._id, p.lat, p.long)}
-                style = {{fontSize : viewPort.zoom * 2, color : "red"}}
+                style = {{fontSize : viewPort.zoom * 2, color : p.userName === currentUser ? "red" : "blue"}}
                 />
 
               </Marker>
@@ -157,10 +189,12 @@ function App() {
                 </select>
 
                 <button className='submitButton' type='submit'>Set Pin!</button>
-
               </form>
 
+              
+
             </div>
+            
 
           </Popup>
         }
@@ -172,7 +206,7 @@ function App() {
 
         <div className='footer-down'>
           {
-            currentUser ? (<button className='logout button'>Log out</button>) :
+            currentUser ? (<button className='logout button' onClick={handleLogout}>Log out</button>) :
             (
               <div>
                 <button className='login button'
@@ -193,9 +227,9 @@ function App() {
 
       </div>
 
-      {showRegister && <Register/>} 
+      {showRegister && <Register setShowRegister={setShowRegister}/>} 
 
-      {showLogin && <Login/>}
+      {showLogin && <Login setShowLogin={setShowLogin} setCurrentUser = {setCurrentUser}/>}
 
     </div>
   );

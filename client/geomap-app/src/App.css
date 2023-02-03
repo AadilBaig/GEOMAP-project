@@ -107,4 +107,10 @@ input::placeholder, textarea::placeholder{
   background-color: rgb(0, 0, 255);
 }
 
+.pin_cancel{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
 
