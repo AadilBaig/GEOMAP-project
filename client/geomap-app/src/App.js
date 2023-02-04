@@ -9,8 +9,28 @@ import PlaceIcon from '@mui/icons-material/Place';
 import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close';
 
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
+
+const pinAddSuccess = () => {
+  toast.success("Added Pin!")
+}
+
+const userNotLoggedIn = () => {
+  toast.warning("Login to set Pins.")
+}
+
+const userLoggedOut = (userS) => {
+  toast.warn("Logged out from " + userS)
+}
+
+const pinAddFailure = () => {
+  toast.error("Failed to add pin. Fill all requirements.")
+}
+
 
 function App() {
 
@@ -48,7 +68,9 @@ function App() {
   }
 
   const handleLogout = () => {
+    userLoggedOut(currentUser)
     setCurrentUser(null)
+    
   }
 
   const handlePinSubmit = async(e) => {
@@ -66,11 +88,13 @@ function App() {
     try{
       if(!currentUser){
         //ERROR
+        userNotLoggedIn()
       }else{
         const response = await axios.post("/pins", newPin)
         setPins([...pins, response.data])
         setNewPlace(null)
         //notify success
+        pinAddSuccess()
 
         setRating(1)
         setDesc(null)
@@ -78,6 +102,7 @@ function App() {
       }
     }catch (err){
       console.log(err)
+      pinAddFailure()
     }
   }
 
@@ -107,6 +132,10 @@ function App() {
       mapStyle = "mapbox://styles/aadilb-cs/cldi19vi3001m01savyzyvrj5"
       onDblClick={handleAddClick}
       >
+        <ToastContainer
+        position='top-left'
+        theme='dark'
+        />
 
         <NavigationControl/>
 

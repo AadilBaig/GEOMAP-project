@@ -3,6 +3,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import "./Register.css"
 
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const userRegisterSuccess = () => {
+  toast.success("Registered Successfully!")
+}
+
+const userRegisterFailed = () => {
+  toast.error("Registeration Failed.")
+}
+
 const Register = ({setShowRegister}) => {
 
       const nameRef = useRef()
@@ -21,10 +32,11 @@ const Register = ({setShowRegister}) => {
         try {
           const response = await axios.post("/users/register", newUser)
           console.log(response)
-
+          userRegisterSuccess()
           setShowRegister(false)
           
         } catch (err) {
+          userRegisterFailed()
           console.log(err)
         }
       }

@@ -3,6 +3,17 @@ import { useRef } from 'react'
 import "./Login.css"
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const userLoggedIn = (userS) => {
+  toast.success("Successfully logged in. Welcome " + userS + "!")
+}
+
+const userLoginFail = () => {
+  toast.error("Failed to login.")
+}
 
 const Login = ({setShowLogin, setCurrentUser}) => {
 
@@ -20,10 +31,12 @@ const Login = ({setShowLogin, setCurrentUser}) => {
       try {
         const response = await axios.post("/users/login", newUser)
         //success notification
+        userLoggedIn(response.data.userName)
         console.log(response)
         setCurrentUser(response.data.userName)
         setShowLogin(false)
       } catch (err) {
+        userLoginFail()
         console.log(err)
       }
 
